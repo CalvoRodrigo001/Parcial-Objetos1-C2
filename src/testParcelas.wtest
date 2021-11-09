@@ -1,0 +1,22 @@
+import plantas.*
+import parcelas.*
+
+describe "Tests de las parcelas"{
+	var parcelita = new Parcela(ancho = 20, largo = 1, horasDeSolRecibidas = 8, tipo = parcelaEco)
+	var sojita2 = new Soja(altura = 1.2, anoDeObtencion = 2009)
+	var sojita3 = new Soja(altura = 1.2, anoDeObtencion = 2009)
+	
+	method initialize(){
+		parcelita.plantar(sojita2)
+		parcelita.plantar(sojita2)
+		parcelita.plantar(sojita2)
+		parcelita.plantar(sojita2)
+	}
+	
+	test "test parcelita"{
+		assert.equals(20, parcelita.superficie())
+		assert.equals(4, parcelita.cantidadMaximaDePlantas())
+		assert.notThat(parcelita.tieneComplicaciones())
+		assert.throwsExceptionWithMessage("Esta planta no puede ser plantada aqui", {parcelita.plantar(sojita3)})
+	}
+}

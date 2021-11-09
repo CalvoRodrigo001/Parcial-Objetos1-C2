@@ -1,0 +1,48 @@
+import plantas.*
+import parcelas.*
+
+describe "tests de las plantas"{
+	
+	//Mentas:
+	var mentita1 = new Menta(altura = 1, anoDeObtencion = 2021)
+	var mentita2 = new Menta(altura = 0.3, anoDeObtencion = 2021)
+	
+	//sojas
+	var sojita1 = new Soja(altura = 0.6, anoDeObtencion = 2009)
+	var sojita2 = new Soja(altura = 1.2, anoDeObtencion = 2009)
+	
+	//Quinoas
+	var quinoita1 = new Quinoa(horasToleradas = 12, anoDeObtencion = 2010)
+	var quinoita2 = new Quinoa(horasToleradas = 9, anoDeObtencion = 2001)
+	
+	
+	test "test de las mentas"{
+		//mentita1
+		assert.equals(3, mentita1.espacio())
+		assert.that(mentita1.daSemillasNuevas())
+		
+		//mentita2
+		assert.equals(0.9,mentita2.espacio())
+		assert.notThat(mentita2.daSemillasNuevas())
+	}
+	
+	test "tests de las Sojas"{
+		//sojita1
+		assert.equals(7, sojita1.horasDeSolToleradas())
+		assert.equals(0.3, sojita1.espacio())
+		assert.notThat(sojita1.daSemillasNuevas())
+		
+		//sojita2
+		assert.equals(9, sojita2.horasDeSolToleradas())
+		assert.equals(0.6, sojita2.espacio())
+		assert.that(sojita2.daSemillasNuevas())
+	}
+	
+	test "tests de las Quinoas"{
+		//quinoita1
+		assert.that(quinoita1.daSemillasNuevas())
+		
+		//quinoita2
+		assert.that(quinoita2.daSemillasNuevas())
+	}
+}
