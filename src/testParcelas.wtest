@@ -2,21 +2,44 @@ import plantas.*
 import parcelas.*
 
 describe "Tests de las parcelas"{
-	var parcelita = new Parcela(ancho = 20, largo = 1, horasDeSolRecibidas = 8, tipo = parcelaEco)
-	var sojita2 = new Soja(altura = 1.2, anoDeObtencion = 2009)
-	var sojita3 = new Soja(altura = 1.2, anoDeObtencion = 2009)
+	//parcelas
+	var parcelita = new Parcela(ancho = 20, largo = 1, horasDeSolRecibidas = 6, tipo = parcelaEco)//4
+	var parcelita2 = new Parcela(ancho = 10, largo = 5, horasDeSolRecibidas = 6, tipo = parcelaIndustrial)//50 - 21.66
+	var parcelita3 = new Parcela(ancho = 3, largo = 1, horasDeSolRecibidas = 5, tipo = parcelaIndustrial)//3 - 
+	var parcelita4 = new Parcela(ancho = 1, largo = 10, horasDeSolRecibidas = 9, tipo = parcelaEco)//10
+	
+	//plantas
+	var sojita2 = new Soja(altura = 1.2, anoDeObtencion = 2009)//9
+	var sojita3 = new Soja(altura = 1.2, anoDeObtencion = 2019)//9
+	var mentita1 = new Menta(altura = 1, anoDeObtencion = 2021)
+	var mentita2 = new Menta(altura = 1, anoDeObtencion = 2021)//6
 	
 	method initialize(){
 		parcelita.plantar(sojita2)
-		parcelita.plantar(sojita2)
-		parcelita.plantar(sojita2)
-		parcelita.plantar(sojita2)
+		parcelita.plantar(sojita3)
+		parcelita.plantar(mentita1)
+		parcelita.plantar(mentita2)
+		
+		//
+		parcelita2.plantar(mentita1)
+		parcelita2.plantar(sojita3)
+		//
+		parcelita4.plantar(sojita2)
+		//
+		inta.agregarParcelas(parcelita)
+		inta.agregarParcelas(parcelita2)
+		inta.agregarParcelas(parcelita4)
+		
 	}
 	
 	test "test parcelita"{
 		assert.equals(20, parcelita.superficie())
 		assert.equals(4, parcelita.cantidadMaximaDePlantas())
 		assert.notThat(parcelita.tieneComplicaciones())
-		assert.throwsExceptionWithMessage("Esta planta no puede ser plantada aqui", {parcelita.plantar(sojita3)})
+		assert.throwsExceptionWithMessage("Esta planta no puede ser plantada aqui", {parcelita.plantar(sojita2)})
+	}
+	
+	test "tests del inta"{
+		assert.equals(2.33333, inta.promedioDePlantas())
 	}
 }

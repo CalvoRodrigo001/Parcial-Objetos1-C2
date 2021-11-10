@@ -13,6 +13,7 @@ class Planta {
 	
 	//4-ideales
 	method esParcelaIdeal(parcela)
+	
 	// 5- asociación
 	method seAsociaBienCon(parcela) = if(parcela.tipo() == parcelaEco){ 
 		!parcela.tieneComplicaciones() and self.esParcelaIdeal(parcela)

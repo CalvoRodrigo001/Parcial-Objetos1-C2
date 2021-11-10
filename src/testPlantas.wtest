@@ -15,6 +15,11 @@ describe "tests de las plantas"{
 	var quinoita1 = new Quinoa(horasToleradas = 12, anoDeObtencion = 2010)
 	var quinoita2 = new Quinoa(horasToleradas = 9, anoDeObtencion = 2001)
 	
+	//parcelas para la parte de ideales
+	var parcelita = new Parcela(ancho = 20, largo = 1, horasDeSolRecibidas = 8, tipo = parcelaEco) //20
+	var parcelita2 = new Parcela(ancho = 10, largo = 5, horasDeSolRecibidas = 6, tipo = parcelaEco)//50
+	var parcelita3 = new Parcela(ancho = 3, largo = 1, horasDeSolRecibidas = 10, tipo = parcelaEco)//3
+	var parcelita4 = new Parcela(ancho = 1, largo = 10, horasDeSolRecibidas = 9, tipo = parcelaEco)//10
 	
 	test "test de las mentas"{
 		//mentita1
@@ -45,4 +50,26 @@ describe "tests de las plantas"{
 		//quinoita2
 		assert.that(quinoita2.daSemillasNuevas())
 	}
+	
+	//ideales
+	test "mentita1 tiene como ideal a todas las parcelas menos a la parcelita3"{
+		//son ideales
+		assert.that(mentita1.esParcelaIdeal(parcelita))
+		assert.that(mentita1.esParcelaIdeal(parcelita2))
+		assert.that(mentita1.esParcelaIdeal(parcelita4))
+		
+		//no ideales
+		assert.notThat(mentita1.esParcelaIdeal(parcelita3))
+	}
+	test "sojita2 tiene como ideal a la parcelita4"{
+		//ideales
+		assert.that(mentita1.esParcelaIdeal(parcelita4))
+		
+		//no ideales
+		assert.notThat(sojita2.esParcelaIdeal(parcelita))
+		assert.notThat(sojita2.esParcelaIdeal(parcelita2))
+		assert.notThat(sojita2.esParcelaIdeal(parcelita3))
+	}
+	
+	
 }

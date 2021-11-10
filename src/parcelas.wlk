@@ -6,7 +6,7 @@ class Parcela {
 	var property ancho
 	var property largo
 	var property horasDeSolRecibidas
-	const plantas = []
+	const property plantas = []
 
    //5 - asociacion
 	var property tipo
@@ -27,6 +27,8 @@ class Parcela {
 	
     /*method laParcelaEsDeTipo(nuevoTipo){ tipo = nuevoTipo}
 	  method tipoDeParcela() = tipo */
+	  
+	  method cantidadDePlantasBienAsociadas() = plantas.count({p=>p.seAsociaBienCon(self)})
 	
 	
 }
@@ -43,13 +45,15 @@ object inta{
 	
 	var parcelas = []
 	
+	method agregarParcelas(unaParcela){parcelas.add(unaParcela)}
+	
 	method promedioDePlantas() = parcelas.sum({p=>p.plantas().size()}) / parcelas.size()
 	
 	method parcelaMasAutoSustentable() = self.parcelasConMasDe(4).parcelaConMasAsociadas()
 	
 	method parcelasConMasDe(numero) = parcelas.filter({p => p.plantas().size() > numero })
 	
-	method parcelaConMasAsociadas() = true
+	method parcelaConMasAsociadas() = parcelas.filter({p => p.cantidadDePlantasBienAsociadas().max({p.cantidadDePlantasBienAsociadas()})})
 
 }
 
